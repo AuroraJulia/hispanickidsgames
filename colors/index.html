@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colors in Spanish for Kids — Free Bilingual Game</title>
+  <meta name="description" content="Free game to learn colors in Spanish and English. Perfect for preschool and kindergarten kids. No download needed.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #fff8f0; text-align: center; padding: 20px; }
+    h1 { font-size: 1.6em; color: #333; margin-bottom: 20px; }
+    .card { background: white; border-radius: 20px; padding: 30px; max-width: 420px; margin: 0 auto 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .swatch { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 16px; border: 3px solid rgba(0,0,0,0.1); transition: background 0.4s; }
+    .spanish { font-size: 2.8em; font-weight: bold; color: #e74c3c; margin-bottom: 6px; }
+    .english { font-size: 1.4em; color: #555; margin-bottom: 20px; }
+    .btn-row { display: flex; gap: 12px; justify-content: center; }
+    button { padding: 12px 28px; font-size: 1em; border: none; border-radius: 30px; cursor: pointer; background: #3498db; color: white; font-weight: bold; transition: background 0.2s; }
+    button:hover { background: #2980b9; }
+    .score { font-size: 0.95em; color: #aaa; margin-top: 16px; }
+    .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 14px; }
+    .progress-bar { height: 6px; background: #2ecc71; border-radius: 3px; transition: width 0.4s; }
+    .back-link { display: inline-block; margin-top: 16px; color: #ff6b6b; text-decoration: none; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+
+  <h1>🎨 Los Colores / Colors</h1>
+
+  <div class="card">
+    <div class="swatch" id="swatch"></div>
+    <div class="spanish" id="spanish"></div>
+    <div class="english" id="english"></div>
+    <div class="btn-row">
+      <button onclick="prev()">◀ Atrás</button>
+      <button onclick="next()">Siguiente ▶</button>
+    </div>
+    <div class="progress"><div class="progress-bar" id="bar"></div></div>
+    <div class="score" id="score"></div>
+  </div>
+
+  <a href="../" class="back-link">← Back to all games</a>
+
+  <script>
+    const colors = [
+      { es: "Rojo", en: "Red", hex: "#e74c3c" },
+      { es: "Azul", en: "Blue", hex: "#3498db" },
+      { es: "Verde", en: "Green", hex: "#2ecc71" },
+      { es: "Amarillo", en: "Yellow", hex: "#f1c40f" },
+      { es: "Naranja", en: "Orange", hex: "#e67e22" },
+      { es: "Morado", en: "Purple", hex: "#9b59b6" },
+      { es: "Rosa", en: "Pink", hex: "#fd79a8" },
+      { es: "Blanco", en: "White", hex: "#bdc3c7" },
+      { es: "Negro", en: "Black", hex: "#2c3e50" },
+      { es: "Café", en: "Brown", hex: "#8B4513" }
+    ];
+    let i = 0;
+    function show() {
+      document.getElementById("swatch").style.background = colors[i].hex;
+      document.getElementById("spanish").textContent = colors[i].es;
+      document.getElementById("english").textContent = colors[i].en;
+      document.getElementById("score").textContent = (i + 1) + " of " + colors.length;
+      document.getElementById("bar").style.width = ((i + 1) / colors.length * 100) + "%";
+    }
+    function next() { i = (i + 1) % colors.length; show(); }
+    function prev() { i = (i - 1 + colors.length) % colors.length; show(); }
+    show();
+  </script>
+
+</body>
+</html>
