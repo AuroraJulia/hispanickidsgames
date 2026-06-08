@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Numbers in Spanish for Kids — Free Bilingual Game</title>
+  <meta name="description" content="Free game to learn numbers in Spanish and English. Count from 1 to 20 with fun bilingual flashcards for kids.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f0f4ff; text-align: center; padding: 20px; }
+    h1 { font-size: 1.6em; color: #333; margin-bottom: 20px; }
+    .card { background: white; border-radius: 20px; padding: 30px; max-width: 420px; margin: 0 auto 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .number-big { font-size: 5em; font-weight: bold; color: #3498db; margin-bottom: 10px; line-height: 1; }
+    .dots { font-size: 1.8em; margin-bottom: 10px; min-height: 40px; letter-spacing: 4px; }
+    .spanish { font-size: 2em; font-weight: bold; color: #e74c3c; margin-bottom: 4px; }
+    .english { font-size: 1.3em; color: #555; margin-bottom: 20px; }
+    .btn-row { display: flex; gap: 12px; justify-content: center; }
+    button { padding: 12px 28px; font-size: 1em; border: none; border-radius: 30px; cursor: pointer; background: #3498db; color: white; font-weight: bold; }
+    button:hover { background: #2980b9; }
+    .score { font-size: 0.95em; color: #aaa; margin-top: 16px; }
+    .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 14px; }
+    .progress-bar { height: 6px; background: #3498db; border-radius: 3px; transition: width 0.4s; }
+    .back-link { display: inline-block; margin-top: 16px; color: #ff6b6b; text-decoration: none; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+
+  <h1>🔢 Los Números / Numbers</h1>
+
+  <div class="card">
+    <div class="number-big" id="numDisplay"></div>
+    <div class="dots" id="dots"></div>
+    <div class="spanish" id="spanish"></div>
+    <div class="english" id="english"></div>
+    <div class="btn-row">
+      <button onclick="prev()">◀ Atrás</button>
+      <button onclick="next()">Siguiente ▶</button>
+    </div>
+    <div class="progress"><div class="progress-bar" id="bar"></div></div>
+    <div class="score" id="score"></div>
+  </div>
+
+  <a href="../" class="back-link">← Back to all games</a>
+
+  <script>
+    const numbers = [
+      { n: 1,  es: "Uno",      en: "One" },
+      { n: 2,  es: "Dos",      en: "Two" },
+      { n: 3,  es: "Tres",     en: "Three" },
+      { n: 4,  es: "Cuatro",   en: "Four" },
+      { n: 5,  es: "Cinco",    en: "Five" },
+      { n: 6,  es: "Seis",     en: "Six" },
+      { n: 7,  es: "Siete",    en: "Seven" },
+      { n: 8,  es: "Ocho",     en: "Eight" },
+      { n: 9,  es: "Nueve",    en: "Nine" },
+      { n: 10, es: "Diez",     en: "Ten" },
+      { n: 11, es: "Once",     en: "Eleven" },
+      { n: 12, es: "Doce",     en: "Twelve" },
+      { n: 13, es: "Trece",    en: "Thirteen" },
+      { n: 14, es: "Catorce",  en: "Fourteen" },
+      { n: 15, es: "Quince",   en: "Fifteen" },
+      { n: 16, es: "Dieciséis",en: "Sixteen" },
+      { n: 17, es: "Diecisiete",en:"Seventeen" },
+      { n: 18, es: "Dieciocho",en: "Eighteen" },
+      { n: 19, es: "Diecinueve",en:"Nineteen" },
+      { n: 20, es: "Veinte",   en: "Twenty" }
+    ];
+    let i = 0;
+    function show() {
+      const d = numbers[i];
+      document.getElementById("numDisplay").textContent = d.n;
+      document.getElementById("dots").textContent = "⭐".repeat(Math.min(d.n, 10));
+      document.getElementById("spanish").textContent = d.es;
+      document.getElementById("english").textContent = d.en;
+      document.getElementById("score").textContent = (i + 1) + " of " + numbers.length;
+      document.getElementById("bar").style.width = ((i + 1) / numbers.length * 100) + "%";
+    }
+    function next() { i = (i + 1) % numbers.length; show(); }
+    function prev() { i = (i - 1 + numbers.length) % numbers.length; show(); }
+    show();
+  </script>
+
+</body>
+</html>
