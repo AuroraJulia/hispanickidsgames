@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Body Parts in Spanish for Kids — Free Bilingual Game</title>
+  <meta name="description" content="Free game to learn body parts in Spanish and English. Fun bilingual flashcards for kids.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f3e5f5; text-align: center; padding: 20px; }
+    h1 { font-size: 1.6em; color: #333; margin-bottom: 20px; }
+    .card { background: white; border-radius: 20px; padding: 30px; max-width: 420px; margin: 0 auto 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .emoji { font-size: 6em; margin-bottom: 10px; line-height: 1; }
+    .spanish { font-size: 2.4em; font-weight: bold; color: #9b59b6; margin-bottom: 4px; }
+    .english { font-size: 1.3em; color: #555; margin-bottom: 20px; }
+    .btn-row { display: flex; gap: 12px; justify-content: center; }
+    button { padding: 12px 28px; font-size: 1em; border: none; border-radius: 30px; cursor: pointer; background: #9b59b6; color: white; font-weight: bold; }
+    button:hover { background: #8e44ad; }
+    .score { font-size: 0.95em; color: #aaa; margin-top: 16px; }
+    .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 14px; }
+    .progress-bar { height: 6px; background: #9b59b6; border-radius: 3px; transition: width 0.4s; }
+    .back-link { display: inline-block; margin-top: 16px; color: #ff6b6b; text-decoration: none; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>👤 El Cuerpo / Body Parts</h1>
+  <div class="card">
+    <div class="emoji" id="emoji"></div>
+    <div class="spanish" id="spanish"></div>
+    <div class="english" id="english"></div>
+    <div class="btn-row">
+      <button onclick="prev()">◀ Atrás</button>
+      <button onclick="next()">Siguiente ▶</button>
+    </div>
+    <div class="progress"><div class="progress-bar" id="bar"></div></div>
+    <div class="score" id="score"></div>
+  </div>
+  <a href="../" class="back-link">← Back to all games</a>
+  <script>
+    const body = [
+      { es: "Cabeza", en: "Head", emoji: "🗣️" },
+      { es: "Ojos", en: "Eyes", emoji: "👀" },
+      { es: "Nariz", en: "Nose", emoji: "👃" },
+      { es: "Boca", en: "Mouth", emoji: "👄" },
+      { es: "Oreja", en: "Ear", emoji: "👂" },
+      { es: "Mano", en: "Hand", emoji: "✋" },
+      { es: "Pie", en: "Foot", emoji: "🦶" },
+      { es: "Brazo", en: "Arm", emoji: "💪" },
+      { es: "Pierna", en: "Leg", emoji: "🦵" },
+      { es: "Dedo", en: "Finger", emoji: "☝️" },
+      { es: "Espalda", en: "Back", emoji: "🔙" },
+      { es: "Rodilla", en: "Knee", emoji: "🦵" }
+    ];
+    let i = 0;
+    function show() {
+      document.getElementById("emoji").textContent = body[i].emoji;
+      document.getElementById("spanish").textContent = body[i].es;
+      document.getElementById("english").textContent = body[i].en;
+      document.getElementById("score").textContent = (i + 1) + " of " + body.length;
+      document.getElementById("bar").style.width = ((i + 1) / body.length * 100) + "%";
+    }
+    function next() { i = (i + 1) % body.length; show(); }
+    function prev() { i = (i - 1 + body.length) % body.length; show(); }
+    show();
+  </script>
+</body>
+</html>
