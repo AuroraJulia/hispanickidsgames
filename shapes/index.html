@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shapes in Spanish for Kids — Free Bilingual Game</title>
+  <meta name="description" content="Free game to learn shapes in Spanish and English. Fun bilingual flashcards for kids.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #fff3e0; text-align: center; padding: 20px; }
+    h1 { font-size: 1.6em; color: #333; margin-bottom: 20px; }
+    .card { background: white; border-radius: 20px; padding: 30px; max-width: 420px; margin: 0 auto 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .shape-box { font-size: 6em; margin-bottom: 10px; line-height: 1; }
+    .spanish { font-size: 2.4em; font-weight: bold; color: #e67e22; margin-bottom: 4px; }
+    .english { font-size: 1.3em; color: #555; margin-bottom: 20px; }
+    .btn-row { display: flex; gap: 12px; justify-content: center; }
+    button { padding: 12px 28px; font-size: 1em; border: none; border-radius: 30px; cursor: pointer; background: #e67e22; color: white; font-weight: bold; }
+    button:hover { background: #ca6f1e; }
+    .score { font-size: 0.95em; color: #aaa; margin-top: 16px; }
+    .progress { height: 6px; background: #eee; border-radius: 3px; margin-top: 14px; }
+    .progress-bar { height: 6px; background: #e67e22; border-radius: 3px; transition: width 0.4s; }
+    .back-link { display: inline-block; margin-top: 16px; color: #ff6b6b; text-decoration: none; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>🔷 Las Formas / Shapes</h1>
+  <div class="card">
+    <div class="shape-box" id="emoji"></div>
+    <div class="spanish" id="spanish"></div>
+    <div class="english" id="english"></div>
+    <div class="btn-row">
+      <button onclick="prev()">◀ Atrás</button>
+      <button onclick="next()">Siguiente ▶</button>
+    </div>
+    <div class="progress"><div class="progress-bar" id="bar"></div></div>
+    <div class="score" id="score"></div>
+  </div>
+  <a href="../" class="back-link">← Back to all games</a>
+  <script>
+    const shapes = [
+      { es: "Círculo", en: "Circle", emoji: "⭕" },
+      { es: "Cuadrado", en: "Square", emoji: "🟥" },
+      { es: "Triángulo", en: "Triangle", emoji: "🔺" },
+      { es: "Rectángulo", en: "Rectangle", emoji: "▬" },
+      { es: "Estrella", en: "Star", emoji: "⭐" },
+      { es: "Corazón", en: "Heart", emoji: "❤️" },
+      { es: "Óvalo", en: "Oval", emoji: "🥚" },
+      { es: "Diamante", en: "Diamond", emoji: "💎" },
+      { es: "Flecha", en: "Arrow", emoji: "➡️" },
+      { es: "Luna", en: "Moon", emoji: "🌙" }
+    ];
+    let i = 0;
+    function show() {
+      document.getElementById("emoji").textContent = shapes[i].emoji;
+      document.getElementById("spanish").textContent = shapes[i].es;
+      document.getElementById("english").textContent = shapes[i].en;
+      document.getElementById("score").textContent = (i + 1) + " of " + shapes.length;
+      document.getElementById("bar").style.width = ((i + 1) / shapes.length * 100) + "%";
+    }
+    function next() { i = (i + 1) % shapes.length; show(); }
+    function prev() { i = (i - 1 + shapes.length) % shapes.length; show(); }
+    show();
+  </script>
+</body>
+</html>
